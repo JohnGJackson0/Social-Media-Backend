@@ -1,0 +1,24 @@
+{
+  "name": "smbackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "lsof -n -i4TCP:5001 | grep LISTEN | tr -s ' ' | cut -f 2 -d ' ' | xargs kill -9",
+    "start": "nodemon server"
+  },
+  "keywords": [
+    "mern",
+    "express",
+    "node"
+  ],
+  "author": "John Jackson",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.6",
+    "prettier": "^2.6.2"
+  }
+}
