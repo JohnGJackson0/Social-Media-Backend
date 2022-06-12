@@ -4,9 +4,13 @@ env:
   es2021: true
 extends:
   - airbnb-base
+  - eslint:recommended
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: latest
 plugins:
   - '@typescript-eslint'
-rules: {}
+  - 'depreciate'
+rules: {
+  "deprecate/rule-name": 2
+}
