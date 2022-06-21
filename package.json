@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
+  "type": "module",
   "scripts": {
     "prestart": "lsof -n -i4TCP:5001 | grep LISTEN | tr -s ' ' | cut -f 2 -d ' ' | xargs kill -9",
     "start": "nodemon server",
@@ -26,10 +27,13 @@
     "crypto": "^1.0.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "mongodb-memory-server": "^8.7.0",
     "mongoose": "^6.4.0",
     "ts-node": "^10.8.1"
   },
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
+    "@babel/plugin-transform-typescript": "^7.18.4",
     "@types/express": "4.17.1",
     "@types/jest": "^28.1.1",
     "@typescript-eslint/eslint-plugin": "^5.27.1",

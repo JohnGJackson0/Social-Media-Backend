@@ -2,10 +2,11 @@ import { Error } from 'mongoose';
 import { UserModel } from '../models/userSchema';
 import { User } from '../types/models'
 
-async function createUser({
-  firstName, 
-  lastName, 
-  email,  password
+export async function createUser({
+  firstName,
+  lastName,
+  email,
+  password
 }: User): Promise<User> {
   return UserModel.create({
     firstName,
@@ -17,8 +18,4 @@ async function createUser({
   }).catch((error: Error) => {
     throw error;
   });
-}
-
-export default {
-  createUser
 }
