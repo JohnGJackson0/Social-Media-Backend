@@ -1,6 +1,5 @@
-import UserController from '../controllers/user';
-import { RouteInput } from '../types/routes';
-
+import { createUser } from "../controllers/user";
+import { RouteInput } from "../types/routes";
 
 /*
 curl --location --request POST 'localhost:8080/api/create/user' \
@@ -12,12 +11,12 @@ curl --location --request POST 'localhost:8080/api/create/user' \
 */
 
 export default ({ app }: RouteInput) => {
-  app.post('/api/create/user', async (req, res) => {
-    const user = await UserController.createUser({
+  app.post("/api/create/user", async (req, res) => {
+    const user = await createUser({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     });
 
     return res.send({ user });

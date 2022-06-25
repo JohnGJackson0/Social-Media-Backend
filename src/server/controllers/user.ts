@@ -1,6 +1,6 @@
 import { Error } from 'mongoose';
 import { UserModel } from '../models/userSchema';
-import { User } from '../types/models'
+import { User } from '../types/models';
 
 export async function createUser({
   firstName,
