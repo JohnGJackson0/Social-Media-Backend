@@ -46,5 +46,77 @@ describe("User", () => {
         await testEmailValidation("abc.def@mail..com");
       });
     });
+
+    describe("Password validation", () => {
+      it("salts a password", async () => {
+        const newUser = {
+          firstName: "fakeFirstName",
+          email: "example@example.com",
+          password: "password123",
+        };
+
+        const { password } = await createUser(newUser);
+
+        expect(password).not.toBe("password123");
+        // changes depending on time
+        expect(password).not.toEqual(
+          "$2b$10$r4VwgwkAaL8Uu1QHbUcweO8IMDUjMKMMY5D3OVxQ7pkdVFL2Jfro2"
+        );
+      });
+    });
+
+    describe("Name Validation", () => {
+      it("allows no last name", async () => {
+        const newUser = {
+          firstName: "fakeFirstName",
+          email: "example@example.com",
+          password: "password123",
+        };
+
+        let message: string = "";
+
+        try {
+          await createUser(newUser);
+        } catch (e) {
+          message = e.message;
+        }
+
+        expect(message).toEqual("");
+      });
+
+      it("requires first name", async () => {
+        const newUser = {
+          lastName: "lastName",
+          email: "example@example.com",
+          password: "password123",
+        };
+
+        let message: string = "";
+
+        try {
+          await createUser(newUser as any);
+        } catch (e) {
+          message = e.message;
+        }
+
+        expect(message).toEqual(
+          "User validation failed: firstName: Path `firstName` is required."
+        );
+      });
+
+      it("correctly trims", async () => {
+        const newUser = {
+          firstName: " firstName    ",
+          lastName: " lastName    ",
+          email: "example@example.com",
+          password: "password123",
+        };
+
+        const { firstName, lastName } = await createUser(newUser);
+
+        expect(firstName).toBe("firstName");
+        expect(lastName).toBe("lastName");
+      });
+    });
   });
 });
