@@ -1,4 +1,6 @@
-# Main Objectives
+# Project Abondoned because it is being done in Serverless Application Model instead (AWS Lamba)
+
+## Main Objectives
 
 * Develop an API for a Social Media platform in Node, MongoDB & Mongoose
 * Front end: React Native Web with Server Side Rendering (SSR)
